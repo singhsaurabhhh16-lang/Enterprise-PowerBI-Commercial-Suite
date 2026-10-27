@@ -167,7 +167,10 @@ Dedicated page-to-page drill-through audit page linked across all navigation men
 
 1. **Clone the Repository:**
    ```bash
-  git clone https://github.com/singhsaurabhhh16-lang/Enterprise-PowerBI-Commercial-Suite.git
-  
-1.Review Database Diagnostics: Open and execute Retail_Sales_Analysis.sql in SQL Server Management Studio (SSMS) or Azure Data Studio.
-2.Launch the BI Report: Open Sales_Analysis.pbix in Power BI Desktop.   
+   git clone https://github.com/singhsaurabhhh16-lang/Enterprise-PowerBI-Commercial-Suite.git
+  ```
+1. **Review Database Diagnostics:**
+Open and execute Retail_Sales_Analysis.sql in SQL Server Management Studio (SSMS) or Azure Data Studio.
+
+2. **Launch the BI Report:**
+Open Sales_Analysis.pbix in Power BI Desktop.
