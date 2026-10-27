@@ -18,7 +18,7 @@ Multi-category commercial retail businesses face critical visibility gaps when s
 - **Workforce ROI & Headcount Productivity:** Tracking labor expenses against sales productivity is essential to ensure operational teams are not overburdened with high order volume that yields sub-par revenue realization.
 
 **Project Goal:**  
-Ingest 5 clean relational operational datasets, run 32 business diagnostic SQL queries to validate financial and operational baselines, build an optimized Star-Schema data model in Power BI (Import Mode), and deliver a **7-page interactive reporting suite with a dedicated Drilldown module and custom micro-trend tooltip**[cite: 2].
+Ingest 5 clean relational operational datasets, run 32 business diagnostic SQL queries to validate financial and operational baselines, build an optimized Star-Schema data model in Power BI (Import Mode), and deliver a **7-page interactive reporting suite with a dedicated Drilldown module and custom micro-trend tooltip**.
 
 ---
 
@@ -50,7 +50,6 @@ Ingest 5 clean relational operational datasets, run 32 business diagnostic SQL q
   * *Accessories:* `Product_53` ($76.95M)
   * *Furniture:* `Product_202` ($75.87M)
 
-
 ### 🔄 Reverse Logistics Friction (12.0% Leakage)
 - **Return Volume:** Out of 50,000 completed orders, **6,000 returned shipments** were logged, confirming an overall return rate of **12.00%**.
 - **Root-Cause Breakdown (SQL Q25):** Return friction is primarily driven by:
@@ -75,20 +74,21 @@ Ingest 5 clean relational operational datasets, run 32 business diagnostic SQL q
 
 Prior to data visualization, 32 comprehensive business diagnostic queries were executed to audit data integrity and test operational hypotheses.
 
-- **Full SQL Script:** [`Retail_Sales_Analysis.sql`](./Retail_Sales_Analysis.sql)
+- **Full SQL Script:** [`Retail_Sales_Analysis.sql`](Retail_Sales_Analysis.sql)
 - **Techniques Used:** Common Table Expressions (CTEs), Window Functions (`LAG`, `RANK() OVER (PARTITION BY ...)`), Aggregate Joins, `EXISTS` / `NOT EXISTS` subqueries, and Nested `HAVING` filters.
 
 ---
 
 ## 🏛️ 5. Dimensional Modeling (Star Schema)
 
-![Data Model Architecture](Images/01_schema.png)
+![Data Model Architecture](01_schema.png)
 
-- **Facts:** `Orders` (Transactional sales events) and `Returns` (Reverse logistics incidents)[cite: 1].
-- **Dimensions:** `Customers`, `Products`, `Employees`, and `DimDate`[cite: 1].
-- **Central Metric Store:** Dedicated `CoreKPIs` table to store explicit DAX measures, keeping dimension tables clean[cite: 1].
+- **Facts:** `Orders` (Transactional sales events) and `Returns` (Reverse logistics incidents).
+- **Dimensions:** `Customers`, `Products`, `Employees`, and `DimDate`.
+- **Central Metric Store:** Dedicated `CoreKPIs` table to store explicit DAX measures, keeping dimension tables clean.
 
 ---
+
 ## ⚡ 6. Core DAX Calculations
 
 ```dax
@@ -118,55 +118,47 @@ Profit Margin % =
 DIVIDE([Total Profit], [Total Revenue], 0)
 ```
 ## 🖥️ 7. Power BI Dashboard Architecture (7 Core Analytical Pages + 1 Custom Tooltip)
+Page 1: Executive Business Health Overview   
+Executive KPI scorecard, 5-Year Monthly Revenue Velocity trendline, Segment Order Distribution Donut, Geographic Revenue & Profitability, Category Treemap, and Enterprise Profit Margin vs Target Gauge (32.0% Actual vs 35.0% Target). 
 
-### Page 1: Executive Business Health Overview
-![Executive Dashboard](Images/02_executive_dashboard.png)
-- Executive KPI scorecard, 5-Year Monthly Revenue Velocity trendline, Segment Order Distribution Donut, Geographic Revenue & Profitability, Category Treemap, and Enterprise Profit Margin vs Target Gauge (32.0% Actual vs 35.0% Target).
+Page 2: Customer Behavior & Segmentation Analytics  
+Metro-city sales concentration (Mumbai, Gurgaon, Pune, Ahmedabad), Customer Segment volume split (Corporate 54.49%), Top 10 Accounts table, and Order Volume vs Revenue Scatter Matrix.
 
-### Page 2: Customer Behavior & Segmentation Analytics
-![Customer Analysis](Images/03_customer_analysis.png)
-- Metro-city sales concentration (Mumbai, Gurgaon, Pune, Ahmedabad), Customer Segment volume split (Corporate 54.49%), Top 10 Accounts table, and Order Volume vs Revenue Scatter Matrix.
+Page 3: Product Performance & Margin Analytics
+Category Revenue vs Profit distribution, Top 10 Products by Revenue & Margin, Category YoY Waterfall Variance, and SKU Return Rate rankings.
 
-### Page 3: Product Performance & Margin Analytics
-![Product Analysis](Images/04_product_analysis.png)
-- Category Revenue vs Profit distribution, Top 10 Products by Revenue & Margin, Category YoY Waterfall Variance, and SKU Return Rate rankings.
+Page 4: Sales Trend & Temporal Velocity Analytics   
+Dual-axis Quarterly Volume & Revenue combo chart, 5-Year Cumulative Trajectory area visual, and MoM Revenue Growth Momentum differential curve.
 
-### Page 4: Sales Trend & Temporal Velocity Analytics
-![Sales Trends](Images/05_sales_time_analysis.png)
-- Dual-axis Quarterly Volume & Revenue combo chart, 5-Year Cumulative Trajectory area visual, and MoM Revenue Growth Momentum differential curve.
+Page 5: Returns & Reverse Logistics Analytics   
+Return Reason bar ranking (Damaged, Mind Changed, Delays), Category Return Treemap, Category Return Rate bars, and Monthly Return Incident tracking over time.
 
-### Page 5: Returns & Reverse Logistics Analytics
-![Return Analysis](Images/06_return_analysis.png)
-- Return Reason bar ranking (Damaged, Mind Changed, Delays), Category Return Treemap, Category Return Rate bars, and Monthly Return Incident tracking over time.
+Page 6: Employee Performance & Operations Analytics   
+Top Revenue-Generating Reps, Departmental Revenue vs Total Salary line ($8.96M total payroll cost), Individual Order Volume vs Revenue correlation, and Workforce Performance Scorecard.
 
-### Page 6: Employee Performance & Operations Analytics
-![Employee Analysis](Images/07_employee_analysis.png)
-- Top Revenue-Generating Reps, Departmental Revenue vs Total Salary line ($8.96M total payroll cost), Individual Order Volume vs Revenue correlation, and Workforce Performance Scorecard.
-
-### Page 7: Contextual SKU & Margin Drilldown
-- Dedicated page-to-page drill-through audit page linked across all navigation menus and categorical charts, preserving active filter contexts for deep-dive analysis.
+Page 7: Contextual SKU & Margin Drilldown
+Dedicated page-to-page drill-through audit page linked across all navigation menus and categorical charts, preserving active filter contexts for deep-dive analysis.  
 
 ---
 
 ## 🔬 8. Advanced UX & Interactive Features
 
 ### Custom Report-Page Tooltip (`Tooltip_Category`)
-![Custom Tooltip Hover](Images/08_tooltip.png)
-- Executive Treemap ke kisi bhi Category block par mouse hover karte hi ek custom tooltip render hota hai jo category-level micro-trend aur quarterly revenue velocity (FY2025 Q1–Q4) screen par preview karta hai.
+![Custom Tooltip Hover](08_tooltip.png)
+- Hovering over any category block on the Executive Treemap dynamically renders category-level micro-trends and quarterly revenue velocity (FY2025 Q1–Q4) in real time without cluttering canvas real estate.
 
 ### Contextual Navigation & Design System
-- **Drilldown Routing:** Right-clicking any Category item allows cross-report drill-through directly into detailed SKU & Margin analysis on Page 7, preserving all active slicer filters  2].
+- **Drilldown Routing:** Right-clicking any category item enables cross-report drill-through directly into granular SKU & Margin analysis on Page 7, preserving all active slicer filter contexts.
 - **WCAG-Compliant Enterprise Theme:**
   * **Primary Accent:** Corporate Navy (`#11223F`)
   * **Target & Health Accent:** Slate Teal (`#2A9D8F`)
   * **Alert Accent:** Warm Amber (`#D97706`)
   * **Canvas Neutral:** Light Slate Grey (`#F4F6F9`) with pure white containers (`#FFFFFF`).
 
-## 9. Setup & Local Reproduction
-Clone the Repository:
+---
 
-Bash
-git clone https://github.com/singhsaurabhhh16-lang/Enterprise-PowerBI-Commercial-Suite.git
-Review Database Diagnostics: Open and execute Retail_Sales_Analysis.sql in SQL Server Management Studio (SSMS) or Azure Data Studio.
+## 🚀 9. Setup & Local Reproduction
 
-Launch the BI Report: Open Sales_Analysis.pbix in Power BI Desktop.
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/singhsaurabhhh16-lang/Enterprise-PowerBI-Commercial-Suite.git](https://github.com/singhsaurabhhh16-lang/Enterprise-PowerBI-Commercial-Suite.git)
