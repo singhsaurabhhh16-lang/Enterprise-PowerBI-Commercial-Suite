@@ -91,31 +91,47 @@ Prior to data visualization, 32 comprehensive business diagnostic queries were e
 
 ## ⚡ 6. Core DAX Calculations
 
+
+### 1. Month-over-Month (MoM) Revenue Growth %
 ```dax
-// 1. Month-over-Month (MoM) Revenue Growth %
 MoM Revenue Growth% = 
 VAR CurrentRevenue = [Total Revenue]
 VAR PreviousMonthRevenue = CALCULATE([Total Revenue], DATEADD('DimDate'[Date], -1, MONTH))
 RETURN
     DIVIDE(CurrentRevenue - PreviousMonthRevenue, PreviousMonthRevenue, 0)
-
-// 2. Cumulative Revenue Trajectory
+```
+### 2. Cumulative Revenue Trajectory
+```dax
 Running Total Revenue = 
-CALCULATE(
-    [Total Revenue],
-    FILTER(
-        ALLSELECTED('DimDate'[Date]),
-        'DimDate'[Date] <= MAX('DimDate'[Date])
+IF(
+    ISBLANK([Total Revenue]),
+    BLANK(),
+    CALCULATE(
+        [Total Revenue],
+        FILTER(
+            ALLSELECTED(DimDate[Date]),
+            DimDate[Date] <= MAX(DimDate[Date])
+        )
     )
 )
-
-// 3. Operational Return Rate %
+```
+### 3. Operational Return Rate %
+```dax
 Return Rate = 
 DIVIDE([Total Returns], [Total Orders], 0)
-
-// 4. Enterprise Profit Margin %
+```
+### 4. Enterprise Profit Margin %
+```dax
 Profit Margin % = 
 DIVIDE([Total Profit], [Total Revenue], 0)
+```
+### 5. Leading Department by Revenue
+```dax
+Top Department By Revenue = 
+MAXX(
+    TOPN(1, ALLSELECTED(Employees[Department]), [Total Revenue], DESC),
+    Employees[Department]
+)
 ```
 ## 🖥️ 7. Power BI Dashboard Architecture (7 Core Analytical Pages + 1 Custom Tooltip)
 Page 1: Executive Business Health Overview   
