@@ -137,31 +137,31 @@ MAXX(
 )
 ```
 ## 🖥️ 7. Power BI Dashboard Architecture (7 Core Analytical Pages + 1 Custom Tooltip)
-###Page 1: Executive Business Health Overview   
+Page 1: Executive Business Health Overview   
 ![Executive Dashboard](02_executive_dashboard.png)
 Executive KPI scorecard, 5-Year Monthly Revenue Velocity trendline, Segment Order Distribution Donut, Geographic Revenue & Profitability, Category Treemap, and Enterprise Profit Margin vs Target Gauge (32.0% Actual vs 35.0% Target). 
 
-###Page 2: Customer Behavior & Segmentation Analytics  
+Page 2: Customer Behavior & Segmentation Analytics  
 ![Customer Analysis](03_customer_analysis.png)
 Metro-city sales concentration (Mumbai, Gurgaon, Pune, Ahmedabad), Customer Segment volume split (Corporate 54.49%), Top 10 Accounts table, and Order Volume vs Revenue Scatter Matrix.
 
-###Page 3: Product Performance & Margin Analytics
+Page 3: Product Performance & Margin Analytics
 ![Product Analysis](04_product_analysis.png)
 Category Revenue vs Profit distribution, Top 10 Products by Revenue & Margin, Category YoY Waterfall Variance, and SKU Return Rate rankings.
 
-###Page 4: Sales Trend & Temporal Velocity Analytics  
+Page 4: Sales Trend & Temporal Velocity Analytics  
 ![Sales Trends](05-sales_time_analysis.png)
 Dual-axis Quarterly Volume & Revenue combo chart, 5-Year Cumulative Trajectory area visual, and MoM Revenue Growth Momentum differential curve.
 
-###Page 5: Returns & Reverse Logistics Analytics  
+Page 5: Returns & Reverse Logistics Analytics  
 ![Return Analysis](07_return_analysis.png)
 Return Reason bar ranking (Damaged, Mind Changed, Delays), Category Return Treemap, Category Return Rate bars, and Monthly Return Incident tracking over time.
 
-###Page 6: Employee Performance & Operations Analytics   
+Page 6: Employee Performance & Operations Analytics   
 ![Employee Analysis](06_employee_analysis.png)
 Top Revenue-Generating Reps, Departmental Revenue vs Total Salary line ($8.96M total payroll cost), Individual Order Volume vs Revenue correlation, and Workforce Performance Scorecard.
 
-###Page 7: Contextual SKU & Margin Drilldown
+Page 7: Contextual SKU & Margin Drilldown
 Dedicated page-to-page drill-through audit page linked across all navigation menus and categorical charts, preserving active filter contexts for deep-dive analysis.  
 
 ---
